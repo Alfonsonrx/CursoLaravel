@@ -10,28 +10,40 @@
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
 
         <!-- Styles -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     </head>
     <body>
         <div class="container">
             <div class="row">
                 <div class="col-sm-8 mx-auto">
-                    <div class="card">
-                        <form action="{{ route('users.store') }}" method="POST">
-                            <div class="form-row" style="display: flex;">
-                                <div class="col-sm-3">
-                                    <input type="text" name="name" class="form-control" placeholder="Nombre">
+                    <div class="card border-0 shadow">
+                        <div class="card-body">
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    @foreach ($errors->all() as $error)
+                                        - {{ $error }} <br>
+                                    @endforeach
                                 </div>
-                                <div class="col-sm-4">
-                                    <input type="text" name="email" class="form-control" placeholder="Email">
+                            @endif
+                            <form action="{{ route('users.store') }}" method="POST">
+                                <div class="form-row">
+                                    <div class="col-sm-3">
+                                        <input type="text" name="name" class="form-control" placeholder="Nombre" value="{{old('name')}}">
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <input type="text" name="email" class="form-control" placeholder="Email" value="{{old('email')}}">
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input type="text" name="password" class="form-control" placeholder="Contraseña">
+                                    </div>
+                                    <div class="col-auto">
+                                        @csrf
+                                        <button type="submit" class="btn btn-primary">Enviar</button>
+                                    </div>
                                 </div>
-                                <div class="col-sm-3">
-                                    <input type="text" name="password" class="form-control" placeholder="Contraseña">
-                                </div>
-
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
 
                     <table class="table">
