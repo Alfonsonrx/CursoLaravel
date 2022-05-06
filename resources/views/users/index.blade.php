@@ -29,10 +29,7 @@
                                 <div class="col-sm-3">
                                     <input type="text" name="password" class="form-control" placeholder="Contraseña">
                                 </div>
-                                <div class="col-auto">
-                                    @csrf
-                                    <button type="submit" class="btn btn-primary">Enviar</button>
-                                </div>
+
                             </div>
                         </form>
                     </div>
